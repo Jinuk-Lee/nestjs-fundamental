@@ -1,3 +1,4 @@
+//타입스크립트를 쓰는 가이드 라인 제시
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
