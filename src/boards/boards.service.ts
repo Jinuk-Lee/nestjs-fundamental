@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Board, BoardsStatus } from "./boards.model";
-import {vi as uuid} from 'uuid';
+import {v1 as uuid} from 'uuid';
 //boards의 모든 정보가 입력되는 곳
 @Injectable()
 export class BoardsService {
