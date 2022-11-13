@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { Board, BoardsStatus } from "./boards.model";
-import {v1 as uuid} from 'uuid';
-import { create } from "domain";
+import { v1 as uuid } from "uuid";
 import { CreateBoardDto } from "./dto/create-board.dto";
+
 //boards의 모든 정보가 입력되는 곳
 @Injectable()
 export class BoardsService {
@@ -14,14 +14,18 @@ export class BoardsService {
   }
 
   createBoard(createBoardDto: CreateBoardDto) { //게시물 생성
-    const {title, description }= createBoardDto;
+    const { title, description } = createBoardDto;
     const board: Board = {
-      id : uuid(),
+      id: uuid(),
       title,
       description,
       status: BoardsStatus.PUBLIC
     };
     this.boards.push(board);
     return board;
+  }
+
+  getBoardById(id: string): Board {
+    return this.boards.find((board) => board.id === id);
   }
 }
