@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { BoardsService } from "./boards.service";
 import { Board } from "./boards.model";
 import { CreateBoardDto } from "./dto/create-board.dto";
@@ -24,6 +24,11 @@ export class BoardsController {
   @Get("/:id")
   getBoardById(@Param("id") id: string): Board { //게시물 하나만 리턴함.
     return this.boardsService.getBoardById(id);
+  }
+
+  @Delete("/:id")
+  deleteBoard(@Param("id") id: string): void {
+    this.boardsService.deleteBoard(id);  //deleteBoard함수 호출
   }
 }
 
