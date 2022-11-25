@@ -1,12 +1,12 @@
 import {Injectable, NotFoundException} from "@nestjs/common";
-import {Board, BoardsStatus} from "./boards.model";
+import { BoardsStatus} from "./board-status.enum";
 import {v1 as uuid} from "uuid";
 import {CreateBoardDto} from "./dto/create-board.dto";
 
 //boards의 모든 정보가 입력되는 곳
 @Injectable()
 export class BoardsService {
-    
+
     // //boards의 형식을 Board타입으로 설정,여러값이기 때문에 Board[]
     //
     // getAllBoards(): Board[] {

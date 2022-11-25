@@ -1,5 +1,5 @@
 import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
-import {BoardsStatus} from "./boards.model";
+import {BoardsStatus} from "./board-status.enum";
 
 @Entity()
 //CREATE TABLE board 부분
