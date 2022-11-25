@@ -6,8 +6,7 @@ import {CreateBoardDto} from "./dto/create-board.dto";
 //boards의 모든 정보가 입력되는 곳
 @Injectable()
 export class BoardsService {
-
-    //private boards: Board[] = []; //다른 컴포턴트의 수정을 막기위해 private 사용
+    private boards: Board[] = []; //다른 컴포턴트의 수정을 막기위해 private 사용
 
     // //boards의 형식을 Board타입으로 설정,여러값이기 때문에 Board[]
     //
