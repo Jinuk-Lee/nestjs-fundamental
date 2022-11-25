@@ -2,8 +2,9 @@ import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 import {BoardsStatus} from "./boards.model";
 
 @Entity()
+//CREATE TABLE board 부분
 export class Board extends BaseEntity {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn() //id 열이 기본키 열임을 나타낸다.
     id : number;
 
     @Column()
