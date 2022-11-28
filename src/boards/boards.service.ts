@@ -1,6 +1,5 @@
 import {Injectable, NotFoundException} from "@nestjs/common";
 import {BoardsStatus} from "./board-status.enum";
-import {v1 as uuid} from "uuid";
 import {CreateBoardDto} from "./dto/create-board.dto";
 import {InjectRepository} from "@nestjs/typeorm";
 import {BoardRepository} from "./board.repository";
@@ -33,6 +32,19 @@ export class BoardsService {
     //     return board;
     // }
     //
+    async createBoard(createBoardDto : CreateBoardDto) : Promise <Board>{
+        const {title, description} = createBoardDto;
+
+        const board = this.boardRepository.create({
+            title,
+            description,
+            status: BoardsStatus.PUBLIC
+        })
+
+        await this.boardRepository.save(board);
+        return board;
+    }
+
     async getBoardById(id: number): Promise<Board> {
         const found = await this.boardRepository.findOne(id);
         //constructor에 boardRepository를 주입했기 때문에 사용이 가능해짐.
