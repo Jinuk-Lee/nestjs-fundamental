@@ -32,7 +32,7 @@ export class BoardsService {
     //     return board;
     // }
     //
-    async createBoard(createBoardDto : CreateBoardDto) : Promise <Board>{
+    async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
         const {title, description} = createBoardDto;
 
         const board = this.boardRepository.create({
@@ -49,7 +49,7 @@ export class BoardsService {
         const found = await this.boardRepository.findOne(id);
         //constructor에 boardRepository를 주입했기 때문에 사용이 가능해짐.
 
-        if(!found){
+        if (!found) {
             throw new NotFoundException(`Can't find Board with id ${id}`);
         }
 
@@ -66,6 +66,12 @@ export class BoardsService {
     //     return found;
     // }
     //
+    async  deleteBoard(id : number) : Promise<void> {
+        const result = await  this.boardRepository.delete(id);
+
+        console.log('result',result);
+    }
+
     // deleteBoard(id: string): void {
     //     const found = this.getBoardById(id);
     //     this.boards = this.boards.filter((board) => board.id !== found.id);
