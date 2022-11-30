@@ -32,30 +32,28 @@ export class BoardsService {
     //     return board;
     // }
     //
-    async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
-        const {title, description} = createBoardDto;
-
-        const board = this.boardRepository.create({
-            title,
-            description,
-            status: BoardsStatus.PUBLIC
-        })
-
-        await this.boardRepository.save(board);
-        return board;
+    createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
+        return this.boardRepository.createBoard(createBoardDto);
     }
 
+    // async getBoardById(id: number): Promise<Board> {
+    //     const found = await this.boardRepository.findOne(id);
+    //     //constructor에 boardRepository를 주입했기 때문에 사용이 가능해짐.
+    //
+    //     if (!found) {
+    //         throw new NotFoundException(`Can't find Board with id ${id}`);
+    //     }
+    //
+    //     return found;
+    // }
     async getBoardById(id: number): Promise<Board> {
-        const found = await this.boardRepository.findOne(id);
-        //constructor에 boardRepository를 주입했기 때문에 사용이 가능해짐.
+      const found = await this.boardRepository.findOne({ where: { id: id } });
 
-        if (!found) {
-            throw new NotFoundException(`Can't find Board with id ${id}`);
-        }
-
-        return found;
+      if (!found) {
+        throw new NotFoundException(`can't find Board with id ${id}`);
+      }
+      return found;
     }
-
 
     // getBoardById(id: string): Board {
     //     const found = this.boards.find((board) => board.id === id);
@@ -66,10 +64,10 @@ export class BoardsService {
     //     return found;
     // }
     //
-    async  deleteBoard(id : number) : Promise<void> {
-        const result = await  this.boardRepository.delete(id);
+    async deleteBoard(id: number): Promise<void> {
+        const result = await this.boardRepository.delete(id);
 
-        console.log('result',result);
+        console.log('result', result);
     }
 
     // deleteBoard(id: string): void {
