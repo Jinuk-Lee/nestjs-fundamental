@@ -24,10 +24,10 @@ export class BoardsService {
         const board = this.boardRepository.create({
             title,
             description,
-            status: BoardStatus.PUBLIC,
+            status: BoardStatus.PUBLIC
         });
 
-        await this.boardRepository.save(createBoardDto);
+        await this.boardRepository.save(board);
         return board;
     }
 
@@ -47,14 +47,4 @@ export class BoardsService {
         console.log('result', result);
     }
 
-    // deleteBoard(id: string): void {
-    //     const found = this.getBoardById(id);
-    //     this.boards = this.boards.filter((board) => board.id !== found.id);
-    // }
-    //
-    // updateBoardStatus(id: string, status: BoardsStatus): Board {
-    //     const board = this.getBoardById(id);
-    //     board.status = status;
-    //     return board;
-    // }
 }
