@@ -11,10 +11,7 @@ import {
   ValidationPipe
 } from "@nestjs/common";
 import { BoardsService } from "./boards.service";
-import { BoardsStatus } from "./board-status.enum";
 import { CreateBoardDto } from "./dto/create-board.dto";
-import {BoardStatusValidationPipe} from "./pipes/board-status-validation.pipe";
-import {promises} from "dns";
 import {Board} from "./board.entity";
 
 @Controller("boards")
@@ -26,7 +23,6 @@ export class BoardsController {
     return this.boardsService.getBoardById(id);
 
   }
-
   @Post()
   @UsePipes(ValidationPipe)
   createBoard(@Body() CreateBoardDto : CreateBoardDto): Promise<Board>{

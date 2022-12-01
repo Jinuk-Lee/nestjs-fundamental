@@ -1,5 +1,5 @@
 import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
-import {BoardsStatus} from "./board-status.enum";
+import {BoardStatus} from "./board-status.enum";
 
 @Entity()
 //CREATE TABLE board 부분
@@ -14,5 +14,5 @@ export class Board extends BaseEntity {
     description : string;
 
     @Column()
-    status : BoardsStatus;
+    status : BoardStatus;
 }
