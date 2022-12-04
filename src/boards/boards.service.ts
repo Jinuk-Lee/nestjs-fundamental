@@ -10,8 +10,8 @@ import {Board} from "./board.entity";
 export class BoardsService {
     constructor(
         /**
-         * @InjectRepository를 이용해 종속성 주입
-         * 서비스에서 Repository를 이용한다고 알림
+         * @InjectRepository 를 이용해 종속성 주입
+         * 서비스에서 Repository 를 이용한다고 알림
          */
         @InjectRepository(Board)
         private boardRepository: BoardRepository
