@@ -40,6 +40,9 @@ export class BoardsService {
       }
       return found;
     }
+    async  getAllBoards(): Promise<Board[]>{
+        return this.boardRepository.find();
+    }
 
     async deleteBoard(id: number): Promise<void> {
         const result = await this.boardRepository.delete(id);
