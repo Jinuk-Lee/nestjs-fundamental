@@ -1,7 +1,6 @@
 import {BaseEntity, Column, Entity} from "typeorm";
 import {PrimaryGeneratedColumn} from "typeorm/browser";
-
-@Entity
+@Entity()
 export class User extends BaseEntity{
     @PrimaryGeneratedColumn()
     id:number;
