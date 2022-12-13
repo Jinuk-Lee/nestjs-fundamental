@@ -4,6 +4,7 @@ import {User} from "./user.entity";
 import {UserRepository} from "./user.repository";
 import {AuthCredentialsDto} from "./dto/auth-credential.dto";
 import * as bcrypt from "bcrypt";
+import {JwtService} from "@nestjs/jwt";
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,8 @@ export class AuthService {
          * 서비스에서 Repository 를 이용한다고 알림
          */
         @InjectRepository(User)
-        private userRepository: UserRepository
+        private userRepository: UserRepository,
+        private jwtService: JwtService
     ) {
     }
 
@@ -39,12 +41,16 @@ export class AuthService {
         return user;
     }
 
-    async signIn(authCredentialsDto: AuthCredentialsDto): Promise<string> {
+    async signIn(authCredentialsDto: AuthCredentialsDto): Promise<{accessToken}> {
         const {username, password} = authCredentialsDto;
         const user = await this.userRepository.findOne({where: {username: username}});
 
         if (user && (await bcrypt.compare(password, user.password))) {
-            return 'login success';
+            //유저 토큰 생성 ( Secret + Payload)
+            //Payload에는 중요한 정보는 넣으면 안됨, 토큰으로 가져가기 쉬움
+            const payload={username}
+            const accessToken = await this.jwtService.sign(payload)
+            return {accessToken};
         } else {
             throw new UnauthorizedException('login failed');
         }
