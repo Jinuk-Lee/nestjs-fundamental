@@ -12,8 +12,10 @@ export class User extends BaseEntity{
     @Column()
     password:string;
 
-    @OneToMany(type => Board,board=>board.user,{eager:true})
+    @OneToMany((type) => Board,(board)=>board.user,{
+        eager:true,
+    })
         // eager:true -> user정보를 가져올 때 board 정보도 가져옴,
         // eager:false -> 반대
-    boards: Board[]
+    boards: Board[];
 }
