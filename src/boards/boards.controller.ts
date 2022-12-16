@@ -6,7 +6,7 @@ import {
   Param,
   ParseIntPipe,
   Patch,
-  Post,
+  Post, UseGuards,
   UsePipes,
   ValidationPipe
 } from "@nestjs/common";
@@ -15,8 +15,10 @@ import { CreateBoardDto } from "./dto/create-board.dto";
 import {Board} from "./board.entity";
 import {BoardStatusValidationPipe} from "./pipes/board-status-validation.pipe";
 import {BoardStatus} from "./board-status.enum";
+import {AuthGuard} from "@nestjs/passport";
 
 @Controller("boards")
+@UseGuards(AuthGuard())
 export class BoardsController {
   constructor(private boardsService: BoardsService) {
   }
@@ -26,7 +28,7 @@ export class BoardsController {
 
   }
   @Get()
-  getAllTask(): Promise<Board[]>{
+  getAllBoard(): Promise<Board[]>{
     return this.boardsService.getAllBoards();
   }
   @Post()
